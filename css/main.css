@@ -1,0 +1,120 @@
+/*--- Main Body ---*/
+body {
+	color: #005887;
+	font-family: 'Ropa Sans', sans-serif;
+	font-size: 16px;
+}
+
+a {
+	color: #005887;
+}
+
+h2,
+h3 {
+	color: #0071b5;
+}
+
+.container {
+	padding-top: 40px;
+}
+
+
+/*--- Header Section---*/
+
+.logo {
+	min-width: 48px;
+	max-width: 100px;
+	width: 100%;
+}
+
+.header h1 {
+	text-align: right;
+	color: #0071b5;
+	font-size: 50px;
+}
+
+.header h4 {
+	text-align: right;
+	color: #005887;
+	font-size: 20px;
+}
+
+hr {
+	background-color: #0071b5;
+    border: 0 none;
+    color: #eee;
+    height: 3px;
+}
+
+
+
+/*--- Hero Section ---*/
+
+.me-middle {
+	width: 100%;		
+	padding: 0px;
+}
+
+
+
+/*--- Featured Work Section ---*/
+
+.align-left{
+	text-align: left;
+}
+
+.project {
+	text-align: center;
+}
+
+.project img{
+	border: 1px solid #0071b5;
+	text-align: center;
+}
+
+
+
+/*--- Featured Work Section ---*/
+
+.footer {
+	text-align: center;
+	padding-top: 8%;
+}
+
+
+
+/*--- Responsive Code - Break point ---*/
+
+@media screen and (max-width: 1000px) {
+	body {
+		font-size: 2em;
+	}
+	
+	.header img {
+		display: block;
+		margin-left: auto;
+   		margin-right: auto;
+   	}
+   	
+   	.header h1,
+	.header h4 {
+		text-align: center;
+	}
+	
+	.my-project,
+	.my-projects img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+	}
+	
+	.align-left{
+		text-align: center;
+	}
+	
+	.footer {
+		font-size: 0.7em;
+	}
+}
+
