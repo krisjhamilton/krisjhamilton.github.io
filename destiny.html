@@ -47,17 +47,15 @@
     return options;
   };
  
-  var submitButton = document.getElementById("save_button");
-  submitButton.addEventListener("click", 
-    function() {
-      console.log("Submit");
- 
-      var options = saveOptions();
-      var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
-       
-      document.location = location;
-    }, 
-  false);
+  $('#save-button').on('click', function() {
+    console.log("Submit");
+
+    var options = saveOptions();
+    var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
+     
+    document.location = location;
+  });
+  
 </script>
 
 
