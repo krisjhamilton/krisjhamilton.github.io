@@ -60,7 +60,7 @@
 $('#save-button').on('click', function() {
   var options = {
     'username': $('#username').val(),
-    'pform': $("input[type='radio'][name='rate']:checked").val()
+    'platform': $("input[type='radio'][name='platform']:checked").val()
   };
   console.log(options)
   document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
