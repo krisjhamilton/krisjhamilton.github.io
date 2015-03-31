@@ -39,16 +39,13 @@
 
 <script>
 var getOptions = function() {
-  var username = document.getElementById('username').value;
-  var pform = document.querySelector('input[name="platform"]:checked').value;
   var options = {};
-  options.username = username;
-  options.pform = pform;
+  options.username = document.getElementById('username').value;
+  options.pform = document.querySelector('input[name="platform"]:checked').value;
   return options;
 };
 $('#save-button').on('click', function() {
   
-  var options = {};
   document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(getOptions));
 });
 
