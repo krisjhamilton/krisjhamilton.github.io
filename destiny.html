@@ -38,12 +38,18 @@
   </section>
 
 <script>
-
-$('#save-button').on('click', function() {
+var getOptions = function() {
   var username = document.getElementById('username').value;
-  var platform = document.querySelector('input[name="platform"]:checked').value;
-  var options = { username: username, platform: platform };
-  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+  var pform = document.querySelector('input[name="platform"]:checked').value;
+  var options = {};
+  options.username = username;
+  options.pform = pform;
+  return options;
+};
+$('#save-button').on('click', function() {
+  
+  var options = {};
+  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(getOptions));
 });
 
 </script>
