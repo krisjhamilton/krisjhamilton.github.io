@@ -46,8 +46,11 @@ var getOptions = function() {
   return options;
 };
 $('#save-button').on('click', function() {
-  
-  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(getOptions));
+  var options = {
+    username: $('#username').value,
+    pform: $('input[name="platform"]:checked').value;
+  };
+  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
 });
 
 </script>
