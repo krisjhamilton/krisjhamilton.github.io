@@ -5,16 +5,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Destiny Settings</title>
-<link href="/favicon.ico" rel="icon" />
-<link href="//cdn.jsdelivr.net/foundation/4.0.2/css/foundation.css" rel="stylesheet" />
-<link href="/styles/base.css" rel="stylesheet" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-<!--
-<script src="//cdn.jsdelivr.net/foundation/4.0.2/js/vendor/custom.modernizr.js"></script>
-<script src="//cdn.jsdelivr.net/foundation/4.0.2/js/foundation.min.js"></script>
--->
-<script src="//cdn.jsdelivr.net/sugar/1.3.9/sugar.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 </head>
 <body>
 
@@ -26,7 +17,7 @@
   <section>
     <div class="row">
       <div class="small-12 columns">
-        <label><h2>Script URL</h2></label>
+        <h2>Script URL</h2>
         <input type="text" id="username" />
         <input type="radio" name="platform" value="2" checked>PSN
         <input type="radio" name="platform" value="1">XBOX
@@ -38,18 +29,13 @@
   </section>
 
 <script>
-var getOptions = function() {
-  var options = {
-    username: $('#username').value,
-    pform: $('input[name="platform"]:checked').value;
-  };
-  return options;
-};
+
 $('#save-button').on('click', function() {
   var options = {
-    username: $('#username').value,
-    pform: $('input[name="platform"]:checked').value;
+    username: $('#username').val(),
+    pform: $("input[type='radio'][name='rate']:checked").val()
   };
+  console.log(options)
   document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
 });
 
