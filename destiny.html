@@ -19,8 +19,7 @@
       <div class="small-12 columns">
         <h2>Script URL</h2>
         <input type="text" id="username" />
-        <input type="radio" name="platform" value="2" checked>PSN
-        <input type="radio" name="platform" value="1">XBOX
+
         <p>Platform:
           <select id="platform">
             <option value="2">PSN</option>
@@ -40,8 +39,8 @@
     var pForm = document.getElementById("platform");
  
     var options = {
-      "username": invertSelect.options[invertSelect.selectedIndex].value,
-      "pForm": invertSelect.options[invertSelect.selectedIndex].value
+      "username": $('#username').value,
+      "pForm": pForm.options[pForm.selectedIndex].value
     }
      
     return options;
