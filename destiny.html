@@ -39,9 +39,10 @@
 
 <script>
 var getOptions = function() {
-  var options = {};
-  options.username = document.getElementById('username').value;
-  options.pform = document.querySelector('input[name="platform"]:checked').value;
+  var options = {
+    username: $('#username').val(),
+    pform: $('input[name="platform"]:checked').val();
+  };
   return options;
 };
 $('#save-button').on('click', function() {
