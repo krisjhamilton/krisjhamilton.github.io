@@ -44,7 +44,7 @@ $('#save-button').on('click', function() {
   var platform = document.querySelector('input[name="platform"]:checked').value;
   var options = { username: username, platform: platform };
   document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
-}
+});
 
 </script>
 </body>
