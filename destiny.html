@@ -21,7 +21,12 @@
         <input type="text" id="username" />
         <input type="radio" name="platform" value="2" checked>PSN
         <input type="radio" name="platform" value="1">XBOX
-        
+        <p>Platform:
+          <select id="platform">
+            <option value="2">PSN</option>
+            <option value="1">XBOX</option>
+          </select>
+          </p>
         <button id="save-button">Save</button>
         
       </div>
@@ -29,16 +34,48 @@
   </section>
 
 <script>
+  //Setup to allow easy adding more options later
+  function saveOptions() {
+    var username = document.getElementById("username");
+    var pForm = document.getElementById("platform");
+ 
+    var options = {
+      "username": invertSelect.options[invertSelect.selectedIndex].value,
+      "pForm": invertSelect.options[invertSelect.selectedIndex].value
+    }
+     
+    return options;
+  };
+ 
+  var submitButton = document.getElementById("save_button");
+  submitButton.addEventListener("click", 
+    function() {
+      console.log("Submit");
+ 
+      var options = saveOptions();
+      var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
+       
+      document.location = location;
+    }, 
+  false);
+</script>
+
+
+
+<!--<script>
 
 $('#save-button').on('click', function() {
   var options = {
-    username: $('#username').val(),
-    pform: $("input[type='radio'][name='rate']:checked").val()
+    'username': $('#username').val(),
+    'pform': $("input[type='radio'][name='rate']:checked").val()
   };
   console.log(options)
   document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
 });
 
-</script>
+</script>-->
+
+
+
 </body>
 </html>
