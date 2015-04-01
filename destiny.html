@@ -56,45 +56,33 @@
 -->
 
 <script>
-  var username;
-  var platform;
-  var url1;
-  var memId;
-  var url2;
-  var options;
+  
 
 
   $('#save-button').on('click', function() {
-    username = $('#username').val();
-    platform = $("input[type='radio'][name='platform']:checked").val();
-    url1 = "http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/"+platform+"/"+username+"/";
-    memId = "";
-    url2;
-    options = {};
-
-    function customOutput(){
-        var output;
-        $.ajax({
-              url: url1,
-              async: false,
-              //crossDomain: true
+    var username = $('#username').val();
+    var platform = $("input[type='radio'][name='platform']:checked").val();
+    var url1 = "http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/"+platform+"/"+username+"/";
+    //memId = "";
+    //url2;
+    //options = {};
+    //var output;
+    var memId = $.ajax({
+      type: "GET",
+      url: url1,
+      async: false
+    }).responseText;
+    console.log(memId);
+    //crossDomain: true
+    var memId2 = $.parseJSON(memId);
+    var memId3 = memId2.Response[0].membershipId;
         
-        success: function(data){
-              output = data.Response[0].membershipId;
-              $('#url').val(data.result);
-            }
-        });
-        return output;
-    }
-    memId = customOutput();
-    console.log(memId)
-
-   });
+    
 
   $('#return-button').on('click', function() {
-    if(memId){
-    console.log(memId);
-      url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
+    if(memId3){
+    console.log(memId3);
+      url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId3+"/";
       console.log(url2);
       options = {
         'username': $('#username').val(),
@@ -112,7 +100,7 @@
       
   //console.log(jsonD);
 
-  
+   });
 
   
   
