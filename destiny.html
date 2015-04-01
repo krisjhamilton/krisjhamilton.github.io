@@ -80,7 +80,7 @@
     
 
   $('#return-button').on('click', function() {
-    if(memId3){
+   
     console.log(memId3);
       url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId3+"/";
       console.log(url2);
@@ -93,7 +93,7 @@
       document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options)); 
       
       console.log(options);
-    }
+    
   });
   //var memId = JSON.parse('url1');
   //var jsonD = memId.Response[0].membershipId;
