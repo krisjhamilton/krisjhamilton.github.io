@@ -74,12 +74,9 @@ $('#save-button').on('click', function() {
 
   function customOutput(){
       var output;
-      $.ajaxSetup({
-        async: false
-      });
       $.ajax({
             url: url1,
-            //async: false,
+            async: false,
             //crossDomain: true
       
       success: function(data){
@@ -87,9 +84,6 @@ $('#save-button').on('click', function() {
           }
       });
       return output;
-      $.ajaxSetup({
-        async: true
-      });
   }
   memId = customOutput();
   console.log(customOutput())
@@ -106,7 +100,7 @@ $('#save-button').on('click', function() {
     'url': url2
   };
   //console.log(myCallBack())
-  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+  setTimeout(function(){ document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));}, 2000000 ); 
   
   console.log(options);
 
