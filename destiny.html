@@ -77,10 +77,11 @@ $('#save-button').on('click', function() {
       $.ajax({
             url: url1,
             async: false,
-            crossDomain: true
-      })
-      .done(function(data){
+            //crossDomain: true
+      
+      success: function(data){
             output = data.Response[0].membershipId;
+          }
       });
       return output;
   }
