@@ -64,6 +64,7 @@ $('#save-button').on('click', function() {
   var url1 = "http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/"+platform+"/"+username+"/";
   var memId = "";
   var url2;
+  var loc;
   var url =  $.getJSON(url1, function(data) {
     memId = data.Response[0].membershipId;
     myCallBack(memId);
@@ -83,9 +84,10 @@ function myCallBack(json) {
     'url': url2
   };
   console.log(options)
-  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
-}
 
+  loc = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+}
+  document.location = loc;
   
 
   //var memId = JSON.parse('url1');
