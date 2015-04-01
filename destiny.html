@@ -66,17 +66,24 @@ $('#save-button').on('click', function() {
   var url2;
   var url =  $.getJSON(url1, function(data) {
     memId = data.Response[0].membershipId;
-    myCallBack();
+    myCallBack(memId);
     
 
   });
 function myCallBack(json) {
 
     
-    //var memId2 = memId.membershipId;
-    console.log(memId);
-    url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
-    console.log(url2);
+  //var memId2 = memId.membershipId;
+  console.log(memId);
+  url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
+  console.log(url2);
+  var options = {
+    'username': $('#username').val(),
+    'platform': $("input[type='radio'][name='platform']:checked").val(),
+    'url': url2
+  };
+  console.log(options)
+  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
 }
 
   
@@ -89,13 +96,7 @@ function myCallBack(json) {
   
 
   
-  var options = {
-    'username': $('#username').val(),
-    'platform': $("input[type='radio'][name='platform']:checked").val(),
-    'url': url2
-  };
-  console.log(options)
-  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+  
 });
 
 </script>
