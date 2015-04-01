@@ -81,29 +81,32 @@ $('#save-button').on('click', function() {
       
       success: function(data){
             output = data.Response[0].membershipId;
-            console.log(output);
+            $('#url').val(data.result);
           }
       });
       return output;
   }
   memId = customOutput();
-  console.log(memId)
+  console.log(customOutput())
 
 
  
-
+  setTimeout(function(){ 
   console.log(memId);
-  //url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
+  url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
   console.log(url2);
   options = {
     'username': $('#username').val(),
     'platform': $("input[type='radio'][name='platform']:checked").val(),
-    'memId': memId
+    'url': url2
   };
   //console.log(myCallBack())
-  setTimeout(function(){ document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));}, 2000 ); 
-  
   console.log(options);
+document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+
+}, 2000 ); 
+  
+  
 
   //var memId = JSON.parse('url1');
   //var jsonD = memId.Response[0].membershipId;
