@@ -21,9 +21,9 @@
         <input type="radio" name="platform" value="2" checked>PSN
         <input type="radio" name="platform" value="1">XBOX
         
-        <button id="save-button">Save</button>
+        <!--<button id="save-button">Save</button><input type="text" id="memId" value=""/>-->
         <button id="return-button">Return</button>
-        <input type="text" id="memId" value=""/>
+        
       </div>
     </div>
   </section>
@@ -78,7 +78,7 @@
     var memId3 = memId2.Response[0].membershipId;
     console.log(memId3); 
     $('#memId').val(memId3);
-
+});
     
 
   $('#return-button').on('click', function() {
@@ -88,8 +88,8 @@
       //console.log(url2);
       options = {
         'username': $('#username').val(),
-        'platform': $("input[type='radio'][name='platform']:checked").val(),
-        'url': $('#memId').val()
+        'platform': $("input[type='radio'][name='platform']:checked").val()
+        //'url': $('#memId').val()
         //'url': url2
       };
       //console.log(myCallBack())
@@ -97,7 +97,7 @@
       
       console.log(options);
     
-  });
+  
   });
   //var memId = JSON.parse('url1');
   //var jsonD = memId.Response[0].membershipId;
