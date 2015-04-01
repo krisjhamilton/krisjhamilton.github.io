@@ -70,7 +70,14 @@ $('#save-button').on('click', function() {
     
 
   });
- 
+function myCallBack(json) {
+
+    
+    //var memId2 = memId.membershipId;
+    console.log(memId);
+    url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
+    console.log(url2);
+}
 
   
 
@@ -79,22 +86,18 @@ $('#save-button').on('click', function() {
       
   //console.log(jsonD);
 
-});
- function myCallBack(json) {
+  
 
-    
-    //var memId2 = memId.membershipId;
-    console.log(memId);
-    url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
-    console.log(url2);
-    var options = {
+  
+  var options = {
     'username': $('#username').val(),
     'platform': $("input[type='radio'][name='platform']:checked").val(),
     'url': url2
-    };
-    console.log(options)
-    document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
-  }
+  };
+  console.log(options)
+  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+});
+
 </script>
 
 
