@@ -89,6 +89,7 @@ $('#save-button').on('click', function() {
   console.log(customOutput())
 
 
+ 
 
   console.log(memId);
   url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
@@ -99,7 +100,8 @@ $('#save-button').on('click', function() {
     'url': url2
   };
   //console.log(myCallBack())
-  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+  setTimeout(function(){ document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));}, 2000 ); 
+  
   console.log(options);
 
   //var memId = JSON.parse('url1');
