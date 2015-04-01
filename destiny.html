@@ -22,6 +22,7 @@
         <input type="radio" name="platform" value="1">XBOX
         
         <button id="save-button">Save</button>
+        <button id="return-button">Return</button>
 
       </div>
     </div>
@@ -55,47 +56,55 @@
 -->
 
 <script>
-var username = $('#username').val();
-  var platform = $("input[type='radio'][name='platform']:checked").val();
-  var url1 = "http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/"+platform+"/"+username+"/";
-  var memId = "";
+  var username;
+  var platform;
+  var url1;
+  var memId;
   var url2;
-  var options = {};
+  var options;
 
 
-$('#save-button').on('click', function() {
-  
+  $('#save-button').on('click', function() {
+    username = $('#username').val();
+    platform = $("input[type='radio'][name='platform']:checked").val();
+    url1 = "http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/"+platform+"/"+username+"/";
+    memId = "";
+    url2;
+    options = {};
 
+    function customOutput(){
+        var output;
+        $.ajax({
+              url: url1,
+              async: false,
+              //crossDomain: true
+        
+        success: function(data){
+              output = data.Response[0].membershipId;
+              $('#url').val(data.result);
+            }
+        });
+        return output;
+    }
+    memId = customOutput();
+    console.log(customOutput())
 
-  //var url =  $.getJSON(url1, function(data) {
-  //  memId = data.Response[0].membershipId;
-  //  myCallBack(memId);
-  //});
+   });
 
-  function customOutput(){
-      var output;
-      $.ajax({
-            url: url1,
-            async: false,
-            //crossDomain: true
-      
-      success: function(data){
-            output = data.Response[0].membershipId;
-            $('#url').val(data.result);
-            done1();
-          }
-      });
-      return output;
-  }
-  memId = customOutput();
-  console.log(customOutput())
-
-
- 
-
-  
-  
-
+  $('#return-button').on('click', function() {
+    console.log(memId);
+    url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
+    console.log(url2);
+    options = {
+      'username': $('#username').val(),
+      'platform': $("input[type='radio'][name='platform']:checked").val(),
+      'url': url2
+    };
+    //console.log(myCallBack())
+    setTimeout(function(){ document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));}, 2000 ); 
+    
+    console.log(options);
+  });
   //var memId = JSON.parse('url1');
   //var jsonD = memId.Response[0].membershipId;
       
@@ -105,21 +114,8 @@ $('#save-button').on('click', function() {
 
   
   
-});
-function done1(){ 
-  console.log(memId);
-  url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
-  console.log(url2);
-  options = {
-    'username': $('#username').val(),
-    'platform': $("input[type='radio'][name='platform']:checked").val(),
-    'url': url2
-  };
-  //console.log(myCallBack())
-  console.log(options);
-  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
 
-}
+
 </script>
 
 
