@@ -22,7 +22,7 @@
         <input type="radio" name="platform" value="1">XBOX
         
         <button id="save-button">Save</button>
-        <input id="url" value=""/>
+
       </div>
     </div>
   </section>
@@ -81,26 +81,27 @@ $('#save-button').on('click', function() {
       
       success: function(data){
             output = data.Response[0].membershipId;
+            console.log(output);
           }
       });
       return output;
   }
   memId = customOutput();
-  console.log(customOutput())
+  console.log(memId)
 
 
  
 
   console.log(memId);
-  url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
+  //url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
   console.log(url2);
   options = {
     'username': $('#username').val(),
     'platform': $("input[type='radio'][name='platform']:checked").val(),
-    'url': url2
+    'memId': memId
   };
   //console.log(myCallBack())
-  setTimeout(function(){ document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));}, 2000000 ); 
+  setTimeout(function(){ document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));}, 2000 ); 
   
   console.log(options);
 
