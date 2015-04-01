@@ -55,10 +55,24 @@
 -->
 
 <script>
-var username = $('#username').val();
+
+
+
+$('#save-button').on('click', function() {
+  var username = $('#username').val();
   var platform = $("input[type='radio'][name='platform']:checked").val();
   var url1 = "http://www.bungie.net/Platform/Destiny/SearchDestinyPlayer/"+platform+"/"+username+"/";
-function customOutput(){
+  var memId = "";
+  var url2;
+  var options = {};
+
+
+  //var url =  $.getJSON(url1, function(data) {
+  //  memId = data.Response[0].membershipId;
+  //  myCallBack(memId);
+  //});
+
+  function customOutput(){
       var output;
       $.ajax({
             url: url1,
@@ -70,21 +84,6 @@ function customOutput(){
       });
       return output;
   }
-
-
-$('#save-button').on('click', function() {
-  
-  var memId = "";
-  var url2;
-  var options = {};
-
-
-  //var url =  $.getJSON(url1, function(data) {
-  //  memId = data.Response[0].membershipId;
-  //  myCallBack(memId);
-  //});
-
-  
   memId = customOutput();
   console.log(customOutput())
 
