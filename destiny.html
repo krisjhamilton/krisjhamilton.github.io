@@ -70,7 +70,17 @@ $('#save-button').on('click', function() {
     
 
   });
-function myCallBack(json) {
+ 
+
+  
+
+  //var memId = JSON.parse('url1');
+  //var jsonD = memId.Response[0].membershipId;
+      
+  //console.log(jsonD);
+
+});
+ function myCallBack(json) {
 
     
     //var memId2 = memId.membershipId;
@@ -81,24 +91,10 @@ function myCallBack(json) {
     'username': $('#username').val(),
     'platform': $("input[type='radio'][name='platform']:checked").val(),
     'url': url2
-  };
-  console.log(options)
-  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
-}
-
-  
-
-  //var memId = JSON.parse('url1');
-  //var jsonD = memId.Response[0].membershipId;
-      
-  //console.log(jsonD);
-
-  
-
-  
-  
-});
-
+    };
+    console.log(options)
+    document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+  }
 </script>
 
 
