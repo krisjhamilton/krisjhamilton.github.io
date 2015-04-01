@@ -87,7 +87,7 @@
         return output;
     }
     memId = customOutput();
-    console.log(customOutput())
+    console.log(memId)
 
    });
 
@@ -98,7 +98,7 @@
     options = {
       'username': $('#username').val(),
       'platform': $("input[type='radio'][name='platform']:checked").val(),
-      'url': url2
+      'url': memId
     };
     //console.log(myCallBack())
     setTimeout(function(){ document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));}, 2000 ); 
