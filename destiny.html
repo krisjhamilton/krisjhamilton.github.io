@@ -92,18 +92,20 @@
    });
 
   $('#return-button').on('click', function() {
+    if(memId){
     console.log(memId);
     url2 = "http://www.bungie.net/Platform/Destiny/"+platform+"/Account/"+memId+"/";
     console.log(url2);
     options = {
       'username': $('#username').val(),
       'platform': $("input[type='radio'][name='platform']:checked").val(),
-      'url': memId
+      'url': url2
     };
     //console.log(myCallBack())
     setTimeout(function(){ document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));}, 2000 ); 
     
     console.log(options);
+  }
   });
   //var memId = JSON.parse('url1');
   //var jsonD = memId.Response[0].membershipId;
