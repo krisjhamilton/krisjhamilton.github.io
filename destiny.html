@@ -103,12 +103,12 @@ function myCallBack(data) {
     'platform': $("input[type='radio'][name='platform']:checked").val(),
     'url': url2
   };
-  
+  document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
 
   
 }
 console.log(options)
-document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+
   
 
   //var memId = JSON.parse('url1');
