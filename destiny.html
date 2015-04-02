@@ -5,28 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Destiny Settings</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-</head>
-<body>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<style>
+.centercontents {
+    text-align: center !important;
+}
+</style>
 
-  <div class="row">
-    <div class="small-12 columns">
-      <h2>Destiny Settings</h2>
-    </div>
-  </div>
-  <section>
+</head>
+<body class="centercontents">
+
+  
+  <div class="container">
     <div class="row">
-      <div class="small-12 columns">
-        <h2>Script URL</h2>
-        <input type="text" id="username" value="n6e7o8"/>
-        <input type="radio" name="platform" value="2" checked>PSN
-        <input type="radio" name="platform" value="1">XBOX
-        
-        <!--<button id="save-button">Save</button><input type="text" id="memId" value=""/>-->
-        <button id="return-button">Return</button>
+      <div class="col-sm-12">
+        <image class="img-responsive" src="images/destinylogo.png">
         
       </div>
     </div>
-  </section>
+    <div class="row">
+      <div class="col-sm-12">
+        <h4>Enter you PSN ID or Gamertag</h4>
+      </div>
+    </div>
+        <hr />
+    <div class="row">
+      <div class="col-sm-12"><p>
+        <input class="" type="text" id="username" value="n6e7o8"/></p>
+      </div>
+    </div>
+        <hr />
+    <div class="row">
+      <div class="col-sm-12">
+        <p><input class="" type="radio" name="platform" value="2" checked>PSN</p>
+        <br />
+       <p><input class="" type="radio" name="platform" value="1">XBOX</p>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col-sm-12"><p>
+        <!--<button id="save-button">Save</button><input type="text" id="memId" value=""/>-->
+        <button class="btn btn-danger" id="return-button">Submit</button></p>
+      </div>
+    </div>
+  </div>
+
+
 <!--
 <script>
   //Setup to allow easy adding more options later
