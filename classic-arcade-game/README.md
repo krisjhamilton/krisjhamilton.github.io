@@ -3,9 +3,8 @@
 
 
 ### Play the Game
-
 Visit http://krisjhamilton.github.io/classic-arcade-game to play a live copy of the game.
-
+This link includes all the code in this repository. To install this game locally or on another server, click the 'Download ZIP' button to the right. Unzip the file and double click on the index.html file. Alternatively, you can load this on to your own server/website.
 
 ### Summary
 
