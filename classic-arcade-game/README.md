@@ -2,7 +2,7 @@
 
 
 
-### How to Play the Game
+### Play the Game
 
 Visit http://krisjhamilton.github.io/classic-arcade-game to play a live copy of the game.
 
