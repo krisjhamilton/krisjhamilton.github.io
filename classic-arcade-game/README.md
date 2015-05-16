@@ -29,7 +29,7 @@ To move the character, simple use the arrow keys on your keyboard.
 
 ### Installation Instructions
 
-To install this game locally or on another server, click the 'Download ZIP' button to the right. Unzip the file and double click on the index.html file. Alternatively, you can load this on to your own server/website.
+To install this game locally or on another server, click the 'Download ZIP' button to the right. Unzip the file and double click on the index.html file. Alternatively, you can load this on to your own server/website by copying all the files in their current structure.
 
 ### Source
 
