@@ -3,8 +3,9 @@
 
 
 ### Play the Game
-Visit http://krisjhamilton.github.io/classic-arcade-game to play a live copy of the game.
-This link includes all the code in this repository. To install this game locally or on another server, click the 'Download ZIP' button to the right. Unzip the file and double click on the index.html file. Alternatively, you can load this on to your own server/website.
+
+Visit http://krisjhamilton.github.io/classic-arcade-game to play a live copy of the game. This link includes all the code in this repository.
+
 
 ### Summary
 
@@ -25,6 +26,10 @@ To move the character, simple use the arrow keys on your keyboard.
 
 ##### Life
 * The life bar represents the characters life for the entire game session. Every level you pass, the life bar remains the same as it was on the previous level. When the character life is empty, the game is over and the character will need to start again from level one... Rinse and repeat
+
+### Installation Instructions
+
+To install this game locally or on another server, click the 'Download ZIP' button to the right. Unzip the file and double click on the index.html file. Alternatively, you can load this on to your own server/website.
 
 ### Source
 
