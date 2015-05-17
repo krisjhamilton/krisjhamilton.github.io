@@ -3,25 +3,64 @@
 // Global y positions
 var y = [60, 145, 230, 315];
 
-// Game Setting Defaults
-var playerLivesDefault = 5;
-var gameLevelDefault = 1;
-var playerScoreDefault = 0;
-var gameOverTitle = '';
-var gameOverMsg = '';
-var gameButtonText= '';
+var gameOverTitle = 'Game Over';
+var gameOverMsg = 'Damn... The chicken managed to cross the road! ';
+var gameButtonText= 'Restart';
 
-// Global speed for the enemy
-var enemySpeed = 200;
-
-// Global enemy speed adjustment for each level, 0 being the slowest
-var levelSpeed = 0;
+// Global Defaults (Constants)
+var ENEMY_SPEED = 200;
+var SPEED_STARTING_MULTIPLIER = 0;
+var PLAYER_STARTING_SCORE = 0;
+var PLAYER_STARTING_LIVES = 5;
+var STARTING_LEVEL = 1;
 
 // Players Bounds
-var playerBounds = 50;
+var PLAYER_BOUNDS = 50;
 
 // Global variable to determine state of game
 var gameOver = false;
+
+
+var Level = function() {
+    this.level = 1;
+    this.speedMultiplier = SPEED_STARTING_MULTIPLIER;
+    this.divLevel = document.getElementById('level');
+    this.displayLevel();
+};
+
+Level.prototype.displayLevel = function() {
+    // Updates the displayed level
+    this.divLevel.innerHTML = 'Level : ' + this.level;
+}
+
+Level.prototype.nextLevel = function() {
+    this.level ++;
+    this.speedMultiplier ++;
+    console.log('Next Level:' + this.level + ', Speed Multiplier:'+ this.speedMultiplier);
+    gameOver = true; // Diables user from using the 'allowedKeys'
+    // Set the text for the modal
+    gameButtonText = 'Continue';
+    gameOverTitle = '<h4>Boom! You got there!</h4>';
+    gameOverMsg = '<h5>You passed level this level <br/> Now on to level '+this.level+' and it is only going to get faster!</h5>';
+    handleModal(gameOverTitle, gameOverMsg, gameButtonText);
+    // Update the displayed level
+    this.displayLevel();
+};
+
+Level.prototype.reset = function() {
+    this.level = STARTING_LEVEL;
+    this.speedMultiplier = SPEED_STARTING_MULTIPLIER;
+    console.log('Next Level:' + this.level + ', Speed Multiplier:'+ this.speedMultiplier);
+    gameOver = true; // Diables user from using the 'allowedKeys'
+    // Set the text for the modal
+    gameButtonText = 'Restart';
+    gameOverTitle = '<h4>Game Over!</h4>';
+    gameOverMsg = '<h5>Damn... The chicken managed to cross the road! </h5> <br/><h4> Score: '+player.score+' </h4>';
+    handleModal(gameOverTitle, gameOverMsg, gameButtonText);
+    // Update the displayed level
+    this.displayLevel();
+};
+
 
 // Enemies our Player must avoid
 var Enemy = function() {
@@ -30,13 +69,13 @@ var Enemy = function() {
     // Randomly select a y position from the array declared globally
     this.y = y[Math.floor((Math.random()* 3))];
     // Adjust speed randomly
-    this.speed = Math.floor(200 + (Math.random() * enemySpeed));
+    this.speed = Math.floor(200 + (Math.random() * ENEMY_SPEED));
     this.sprite = 'images/enemy-bug.png';
 };
 
 Enemy.prototype.update = function(dt) {
     // Updating the speed reletive to delta Time and the level reached (levelSpeed)
-    this.x = this.x + levelSpeed + (this.speed * dt);
+    this.x = this.x + level.speedMultiplier + (this.speed * dt);
 
     // Recycle the Enemy and send them on their way again from a
     // random y position in the global array
@@ -45,10 +84,10 @@ Enemy.prototype.update = function(dt) {
     }
 
     // Check collisions with the Players bounds
-    if (player.y >= this.y - playerBounds && player.y <= this.y + playerBounds) {
-        if (player.x >= this.x - playerBounds && player.x <= this.x + playerBounds) {
+    if (player.y >= this.y - PLAYER_BOUNDS && player.y <= this.y + PLAYER_BOUNDS) {
+        if (player.x >= this.x - PLAYER_BOUNDS && player.x <= this.x + PLAYER_BOUNDS) {
             player.lives --;
-            player.reset(); //reset player only
+            player.startPosition(); // Reset player to starting position
         }
     }
 };
@@ -58,7 +97,7 @@ Enemy.prototype.reset = function() {
     // Randomly select a y position from the array declared globally
     this.y = y[Math.floor((Math.random()* 3))];
     // Adjust speed randomly
-    this.speed = Math.floor(200 + (Math.random() * enemySpeed));
+    this.speed = Math.floor(200 + (Math.random() * ENEMY_SPEED));
 };
 
 // Draw the enemy on the screen, required method for game
@@ -67,38 +106,34 @@ Enemy.prototype.render = function() {
 };
 
 // Player class
-var Player = function(x, y) {
-    this.x = x;
-    this.y = y;
+var Player = function() {
+    this.startPosition();
     this.sprite = 'images/char-boy.png';
-    this.lives = playerLivesDefault;
-    this.score = playerScoreDefault;
-    this.level = gameLevelDefault;
+    this.lives = PLAYER_STARTING_LIVES;
+    this.score = PLAYER_STARTING_SCORE; // When this reaches 5, the character will progress to the next level
+    this.divLives = document.getElementById('progressBarLife');
+    this.divScore = document.getElementById('progressBarScore');
 };
 
 Player.prototype.update = function(dt) {
-    // Update the players score and lives
-    var displayLives = this.lives;
-    var displayLevel = this.level;
-    var displayScore = this.score;
-    document.getElementById('level').innerHTML = 'Level : ' + displayLevel;
-
-    // Decided to change to progress bars instead of labels
-    //document.getElementById('lives').innerHTML = 'Lives : ' + displayLives;
-    //document.getElementById('score').innerHTML = 'Score : ' + displayScore;
-
-    // Find the div's to update
-    var divArrayLife = document.getElementById('progressBarLife');
-    var divArrayScore = document.getElementById('progressBarScore');
-
     // Set the progress width style
-    divArrayLife.style.width = (displayLives*20)+'%';
-    divArrayScore.style.width = (displayScore*20)+'%';
+    this.divLives.style.width = (this.lives*20)+'%';
+    this.divScore.style.width = (this.score*20)+'%';
+    // Are we out of lives?? Then yea lets give the user a message to reflect that
+    if(this.lives < 1){
+        level.reset();
+        this.reset();
+    }
+    if(this.score > 4){
+        this.score = PLAYER_STARTING_SCORE; // Resetting score here to ensure 'level.level' does not go into an endless loop
+        this.startPosition();
+        level.nextLevel();
+    }
 
     // Add to Players score when reaching the water
     if (this.y === -25) {
         this.score ++;
-        this.reset(); //reset player only
+        this.startPosition(); //reset player only
     }
 };
 
@@ -107,29 +142,16 @@ Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.reset = function() {
+Player.prototype.startPosition = function() {
     // Resetting Player position
     this.x = 200;
     this.y = 400;
-    var displayScore = this.score;
-    var displayLevel = this.level;
-    // Are we out of lives?? Then yea lets give the user a message to reflect that
-    if(this.lives < 1){
-        gameOver = true;
-        gameButtonText = 'Restart';
-        gameOverTitle = '<h4>Game Over!</h4>';
-        gameOverMsg = '<h5>Damn... The chicken managed to cross the road! </h5> <br/><h4> Score: '+displayScore+' </h4>';
-        handleModal(gameOverTitle, gameOverMsg, gameButtonText);
-    }
-    // Have we reached 5 points to progress to the next level? Then give the user a message to reflect that
-    if(this.score > 4){
-        gameOver = true;
-        gameButtonText = 'Continue';
-        gameOverTitle = '<h4>Boom! You got there!</h4>';
-        gameOverMsg = '<h5>You passed level '+displayLevel+' <br/> Now it is only going to get faster!</h5>';
-        handleModal(gameOverTitle, gameOverMsg, gameButtonText);
-    }
 };
+
+Player.prototype.reset = function() {
+    this.lives = PLAYER_STARTING_LIVES;
+};
+
 
 // Adapting the input to ensure the Player does not go outside the canvas bounds
 // We could make it though that the Player appears on the otherside - almost like teleporting
@@ -148,17 +170,21 @@ Player.prototype.handleInput = function(allowedKeys) {
     }
 };
 
+// Set the Level object in a variable called level
+var level = new Level();
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
-
-// Now pushe them into the array, but only 3 of them
-for (var i = 0; i < 3; i++) {
+// See the meximum amount of enemies
+var maxEnemies = 3;
+// Now push them into the array
+for (var i = 0; i < maxEnemies; i++) {
     allEnemies.push(new Enemy(i));
 }
 
 // Place the player object in a variable called player
-var player = new Player(200, 400);
+var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method.
@@ -184,18 +210,7 @@ function handleModal(modalTitle, modalMsg, modalButton) {
         $('#myInput').focus();
     });
     $('#myModal').modal('show');
-    // When closing, do the final checks and update variables
     $('#myModal').on('hidden.bs.modal', function (e) {
-        if(player.lives < 1){
-            player.level = gameLevelDefault;
-            player.lives = 5;
-            levelSpeed = 0;
-        }
-        if(player.score > 4){
-            player.level ++;
-            levelSpeed ++;
-        }
-        player.score = 0;
-        gameOver = false;
+        gameOver = false; // When dismissing the modal, re-enable 'allowedKeys'
     });
 }
