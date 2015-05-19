@@ -40,7 +40,7 @@ Level.prototype.displayLevel = function() {
 Level.prototype.nextLevel = function() {
     this.level ++;
     this.speedMultiplier ++;
-    console.log('Next Level:' + this.level + ', Speed Multiplier:'+ this.speedMultiplier);
+    // console.log('Next Level:' + this.level + ', Speed Multiplier:'+ this.speedMultiplier);
     this.gameOver = true; // Disables user from using the 'allowedKeys'
     // Update the displayed level
     this.displayLevel();
@@ -49,7 +49,7 @@ Level.prototype.nextLevel = function() {
 Level.prototype.reset = function() {
     this.level = Constants.STARTING_LEVEL;
     this.speedMultiplier = Constants.SPEED_STARTING_MULTIPLIER;
-    console.log('Next Level:' + this.level + ', Speed Multiplier:'+ this.speedMultiplier);
+    // console.log('Next Level:' + this.level + ', Speed Multiplier:'+ this.speedMultiplier);
     this.gameOver = true; // Disables user from using the 'allowedKeys'
     // Update the displayed level
     this.displayLevel();
@@ -124,7 +124,6 @@ Player.prototype.update = function(dt) {
         this.score = Constants.PLAYER_STARTING_SCORE; // Resetting score here to ensure 'level.level' does not go into an endless loop
         level.nextLevel();
     }
-
     // Add to Players score when reaching the water
     if (this.y === -25) {
         this.score ++;
