@@ -1,0 +1,18 @@
+.mdl-data-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#my-table td,
+th {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
+.dropdown-menu {
+    max-height: 300px;
+    overflow: scroll;
+}
